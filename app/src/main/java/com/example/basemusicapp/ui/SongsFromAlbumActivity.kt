@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.basemusicapp.Adapter.AdapterSong
 import com.example.basemusicapp.Model.Song
 import com.example.basemusicapp.R
+import com.example.basemusicapp.Service.CreateNotification
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -73,5 +74,6 @@ class SongsFromAlbumActivity : AppCompatActivity() {
         }
         reference.addValueEventListener(postListener)
     }
+
 
 }

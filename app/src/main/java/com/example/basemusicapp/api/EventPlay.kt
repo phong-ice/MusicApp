@@ -1,9 +1,14 @@
 package com.example.basemusicapp.api
 
+import android.content.Context
+import android.content.Intent
+import com.example.basemusicapp.Model.Song
+import com.example.basemusicapp.Service.ManagerPlayMusicService
+
 interface EventPlay {
-    fun onPlaySong(pos:Int)
-    fun onPauseSong(pos:Int)
-    fun onRePlaySong(pos:Int)
-    fun onNextSong(pos:Int)
-    fun onPreviousSong(pos:Int)
+    fun onPlaySong()
+    fun onPauseSong()
+    fun onNextSong()
+    fun onReplaySong()
+    fun onPreviousSong()
 }

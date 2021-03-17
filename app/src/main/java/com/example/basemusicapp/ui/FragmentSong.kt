@@ -32,7 +32,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_song.*
 
-class FragmentSong : Fragment(), EventPlay {
+class FragmentSong : Fragment() {
 
     lateinit var listSongs: ArrayList<Song>
     lateinit var listSongs_backUp: ArrayList<Song>
@@ -59,60 +59,9 @@ class FragmentSong : Fragment(), EventPlay {
             adapter = adapterSong
             layoutManager = LinearLayoutManager(requireContext())
         }
-        requireActivity().registerReceiver(broadcastReceiver, IntentFilter(BROADCAST_ACTIONFILLTER))
         avtiveSearchView()
     }
 
-    var broadcastReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            if (intent != null) {
-                var action = intent.getStringExtra(ACTION_NAME)
-                var pos = intent.getIntExtra("pos", 999)
-                Log.i("test",action.toString())
-                Log.i("postion",pos.toString())
-                when (action) {
-                    ACTION_PREVIOUS_SONG -> {
-                        if (pos < 0) {
-
-                        } else {
-                            onPreviousSong(pos)
-                        }
-                    }
-
-                    ACTION_PLAY_SONG -> {
-                        onPlaySong(pos)
-                    }
-
-                    ACTION_PAUSE_SONG -> {
-                        onPauseSong(pos)
-                    }
-
-                    ACTION_REPLAY_SONG -> {
-                        onRePlaySong(pos)
-                    }
-
-                    ACTION_NEXT_SONG -> {
-                        if (pos > listSongs.size - 1) {
-
-                        } else {
-                            onNextSong(pos)
-                        }
-                    }
-                }
-            }
-
-
-        }
-    }
-
-    var broadcastReceiver_getIsplay = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            if (intent != null) {
-                isPlay = intent.getBooleanExtra("isPlay", true)
-            }
-        }
-
-    }
 
     private fun getListCDByType() {
 
@@ -145,64 +94,6 @@ class FragmentSong : Fragment(), EventPlay {
             }
         }
         reference.addValueEventListener(postListener)
-    }
-
-    override fun onPlaySong(pos: Int) {
-        requireContext().stopService(Intent(context, ManagerPlayMusicService::class.java))
-        var intent = Intent(context, ManagerPlayMusicService::class.java)
-            .setAction(ACTION_PLAY_SONG)
-            .putExtra("link", listSongs[pos].link)
-            .putExtra("pos", pos)
-            .putExtra("name", listSongs[pos].name)
-            .putExtra("author", listSongs[pos].author)
-            .putExtra("drawable_play", R.drawable.ic_baseline_pause_24)
-        requireContext().startService(intent)
-    }
-
-    override fun onPauseSong(pos: Int) {
-        var intent = Intent(context, ManagerPlayMusicService::class.java)
-            .setAction(ACTION_PAUSE_SONG)
-            .putExtra("link", listSongs[pos].link)
-            .putExtra("pos", pos)
-            .putExtra("name", listSongs[pos].name)
-            .putExtra("author", listSongs[pos].author)
-            .putExtra("drawable_play", R.drawable.ic_baseline_play_arrow_24)
-        requireContext().startService(intent)
-    }
-
-    override fun onRePlaySong(pos: Int) {
-        var intent = Intent(context, ManagerPlayMusicService::class.java)
-            .setAction(ACTION_REPLAY_SONG)
-            .putExtra("link", listSongs[pos].link)
-            .putExtra("pos", pos)
-            .putExtra("name", listSongs[pos].name)
-            .putExtra("author", listSongs[pos].author)
-            .putExtra("drawable_play", R.drawable.ic_baseline_pause_24)
-        requireContext().startService(intent)
-    }
-
-    override fun onNextSong(pos: Int) {
-        requireContext().stopService(Intent(context, ManagerPlayMusicService::class.java))
-        var intent = Intent(context, ManagerPlayMusicService::class.java)
-            .setAction(ACTION_PLAY_SONG)
-            .putExtra("link", listSongs[pos].link)
-            .putExtra("pos", pos)
-            .putExtra("name", listSongs[pos].name)
-            .putExtra("author", listSongs[pos].author)
-            .putExtra("drawable_play", R.drawable.ic_baseline_pause_24)
-        requireContext().startService(intent)
-    }
-
-    override fun onPreviousSong(pos: Int) {
-        requireContext().stopService(Intent(context, ManagerPlayMusicService::class.java))
-        var intent = Intent(context, ManagerPlayMusicService::class.java)
-            .setAction(ACTION_PLAY_SONG)
-            .putExtra("link", listSongs[pos].link)
-            .putExtra("pos", pos)
-            .putExtra("name", listSongs[pos].name)
-            .putExtra("author", listSongs[pos].author)
-            .putExtra("drawable_play", R.drawable.ic_baseline_pause_24)
-        requireContext().startService(intent)
     }
 
     private fun avtiveSearchView(){

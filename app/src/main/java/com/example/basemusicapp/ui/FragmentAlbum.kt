@@ -6,6 +6,7 @@ import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.basemusicapp.Adapter.AdapterAlbum
 import com.example.basemusicapp.Model.Album
@@ -41,7 +42,7 @@ class FragmentAlbum : Fragment() {
         adapterAlbum = AdapterAlbum(requireContext(),listAblum,listAblum_backUp)
 
         lv_album.apply {
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = GridLayoutManager(requireContext(),2)
             adapter = adapterAlbum
         }
         val database = Firebase.database

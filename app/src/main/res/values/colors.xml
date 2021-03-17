@@ -9,6 +9,6 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="PrimaryColor">#263238</color>
-    <color name="DarkColor">#000a12</color>
+    <color name="DarkColor">#000</color>
     <color name="LightColor">#4f5b62</color>
 </resources>

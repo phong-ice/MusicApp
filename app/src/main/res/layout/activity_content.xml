@@ -29,15 +29,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_minimize_Content"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@color/PrimaryColor"
+        android:layout_height="50dp"
+        android:background="#000"
+        android:paddingHorizontal="16dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/navBottom_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment"
-        android:visibility="gone"
-        android:paddingHorizontal="16dp">
+        app:layout_constraintTop_toBottomOf="@+id/fragment">
 
         <TextView
             android:id="@+id/tv_name_minimize_Content"
@@ -48,7 +48,8 @@
             android:text="TextView"
             android:textColor="@color/white"
             android:textColorHint="#FFFFFF"
-            android:textSize="24sp"
+            android:textSize="16sp"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_preveous_minimize_Content"
             app:layout_constraintHorizontal_bias="0.5"

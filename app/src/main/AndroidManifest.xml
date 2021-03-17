@@ -15,9 +15,7 @@
         android:theme="@style/FullScreen">
         <activity android:name=".ui.SongsFromAlbumActivity"></activity>
         <activity android:name=".ui.PlaySongActivity" />
-        <activity android:name=".ui.AlbumActivity" />
-        <activity android:name=".ui.Content" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.Content">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,6 +24,7 @@
         </activity>
 
         <service android:name=".Service.ManagerPlayMusicService" />
+        <receiver android:name=".Service.PassEventNotification"/>
     </application>
 
 </manifest>
